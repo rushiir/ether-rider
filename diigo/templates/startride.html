@@ -1,0 +1,115 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Map</title>
+     <script src="{{url_for('static',filename='new/js/jquery-3.3.1.js')}}"></script>
+  <script src="{{url_for('static',filename='new/blockchain.js')}}"></script>    
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<style type="text/css">
+    #map{
+        height: 80%;
+    }
+    html , body {
+        height: 100%;
+    }
+</style>
+<body onload="myfunction();">
+<div>
+<h1 style="color:blue;font-size: 60px;">EtherRider</h1>
+</div>
+<div id="map">
+</div>
+
+
+<section>
+ <div class="container">
+    <div class="row">
+       <div class="col-md-12 ">
+          <form action="/startride" id="signupform" method="post">
+     
+        <div class="container">
+         <button class="button button4" style="font-size:30px" type="submit" id="btnRegister" class="btn btn-style btn-primary mt-4">Start Ride</button>
+        </div>
+        
+        
+      </form>
+       </div>
+    </div>
+ </div>
+</section>
+
+
+
+
+
+<script type="text/javascript">
+
+	console.log('data1',{{a}});
+    console.log('data2',{{b}});
+    console.log('data3',{{c}});
+    console.log('data4',{{d}});
+    console.log('data5',{{e}});
+    console.log('data6',{{f}});
+    function myfunction(){
+        var map;
+        var start = new google.maps.LatLng({{c}},{{d}});
+        var end = new google.maps.LatLng({{e}},{{f}});
+        var option ={
+            zoom : 10,
+            center : start 
+        };
+        map = new google.maps.Map(document.getElementById('map'),option);
+        var display = new google.maps.DirectionsRenderer();
+        var services = new google.maps.DirectionsService();
+        display.setMap(map);
+            var request ={
+                origin : start,
+                destination:end,
+                travelMode: 'DRIVING'
+            };
+            services.route(request,function(result,status){
+                if(status =='OK'){
+                    display.setDirections(result);
+                }
+            });
+    }
+</script>
+
+
+                         <script>
+                   		$('#btnRegister').click(function()		
+                   			{
+                   				web3=new Web3(web3.currentProvider);
+                   				
+                   				var name = $('#username').val().toString();
+                   			
+                   				var accountisobtained="";//accountis;
+                   				web3.eth.getAccounts((err, res) => { 
+                   					//console.log(err);
+                   					accountisobtained=res[0];
+                   					
+                   					//$('#acd').html(accountisobtained);
+                   					var web3dictdata = {
+                   							gasPrice: web3.utils.stringToHex(gasPriceval),
+                   							gas: web3.utils.stringToHex(gasval),
+                   							  to: address,
+                   							//  value: web3.utils.toWei('1', "ether"),
+                   							  from:accountisobtained,		
+                   						} 					
+
+                   						var val=contract.methods.payment(accountisobtained,name).send(web3dictdata); 
+                   						console.log(val);
+                                           $('input[type="text"]').val('');
+                   						return val;
+
+                   				});
+                   				return false;
+                   			})
+                   	</script>
+       
+      
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwaXa3JZsFqv71812tm1k5FokRzLrX0RM&libraries=places"></script>
+
+</body>
+</html>

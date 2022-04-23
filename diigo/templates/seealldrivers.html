@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>EtherRider</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <!-- style css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}">
+    <!-- fevicon -->
+    <link rel="icon" href="{{url_for('static',filename='images/fevicon.png')}}" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/jquery.mCustomScrollbar.min.css')}}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+          	      
+            	       <script src="{{url_for('static',filename='new/js/jquery-3.3.1.js')}}"></script>
+            	<style>
+                        .container {
+                            max-width: 1500px;
+                            height: 60px;
+                            background: #5555;
+                            margin: auto;
+                            border: 2px solid blue;
+                        }
+                  
+                        .navbar {
+                            background: blue;
+                            position: relative;
+                            color: White;
+                            max-width: 1500px;
+                        }
+                  
+                        .links {
+                            display: none;
+                        }
+                  
+                        .heading a:nth-child(2) {
+                            color: White;
+                            text-decoration: none;
+                            font-size: 20px;
+                            display: block;
+                            padding: 7px;
+                            margin-left: 150px;
+                        }
+                  
+                        .heading a i {
+                            color: white;
+                            padding: 10px;
+                            display: block;
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                        }
+                  
+                        .heading a i:hover {
+                            background-color: white;
+                            color: white;
+                        }
+                  
+                        .links {
+                            background-color: rgb(190, 196, 190);
+                        }
+                  
+                        .links a {
+                            color: white;
+                            padding: 5px 16px;
+                            text-decoration: none;
+                            font-size: 17px;
+                            display: block;
+                            text-align: center;
+                            border-bottom: 1px solid white;
+                        }
+                  
+                        .links a:hover {
+                            background-color: white;
+                            color: white;
+                        }
+                    </style>
+                    
+                    
+                    <style>
+                .dropbtn {
+                  background-color: blue;
+                  color: white;
+                  padding: 16px;
+                  font-size: 16px;
+                  border: none;
+                }
+
+                .dropdown {
+                  position: relative;
+                  display: inline-block;
+                  
+                  
+                }
+
+                .dropdown-content {
+                  display: none;
+                  position: absolute;
+                  background-color: #f1f1f1;
+                  min-width: 160px;
+                  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                  z-index: 1;
+                }
+
+                .dropdown-content a {
+                  color: black;
+                  padding: 12px 16px;
+                  text-decoration: none;
+                  display: block;
+                }
+
+                .dropdown-content a:hover {background-color: #0000cc;}
+
+                .dropdown:hover .dropdown-content {display: block;}
+
+                .dropdown:hover .dropbtn {background-color: #0000cc;}
+                </style>
+
+
+                <style>
+                ul {
+                  list-style-type: none;
+                  margin: 0;
+                  padding: 0;
+                }
+
+                li {
+                  display: inline;
+                }
+                </style>
+  </head>
+  <body>
+  <div>
+<h1 style="color:blue;font-size: 60px;">Ether Ride</h1>
+
+
+<div class="container">
+        <div class="navbar">
+            <div class="heading">
+                <a href="#hamburger-icon" onclick="gfgMenu()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="dropdown">
+                
+                <ul>
+  <li><a href="/findride" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Find Ride</a></li>
+  <li><a href="/paymentoption" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Payment</a></li>
+  <li><a href="/status" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Yore Ride Status</a></li>
+  <li><a href="/History" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">History</a></li>
+  <li><a href="/Logout" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Logout</a></li>
+</ul>
+</div>  
+                
+            </div>
+            <div class="links">
+                <a href="/profile"> Profile </a>
+                <a href="/History"> History </a>
+                <a href="/Logout"> Logout </a>
+               
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+                             <div class="text-img">
+                                <figure><img src="{{url_for('static',filename='images/car.png')}}" alt="#"/></figure>
+                             </div>
+                          </div>
+
+<center><h3 style="color:blue;font-size: 60px;">Choose a ride</h3></center>
+
+
+</div>
+    <div id="map_container" style="width: 1400px; height: 800px;"> </div>
+    
+    
+    
+    
+    
+    <script>
+    function initialize_map() {
+       {% autoescape off %} 
+     console.log('data',{{data}});
+     console.log('data2',{{data2}});
+       
+    
+        var mapDiv = document.getElementById('map_container');
+        var map = new google.maps.Map(mapDiv, {
+            center: {lat: 28.7041, lng: 77.1025},
+            zoom: 5
+
+        });
+       
+        var markerlocations ={{data}};
+        for(i  = 0;  i < markerlocations.length; i++) {
+            var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(markerlocations[i][0], markerlocations[i][1]),
+                    map: map,                   
+                    title: markerlocations[i][2],
+                    icon:  'static/icons/cloudysunny.png'
+                    
+               {% endautoescape %}       
+            });
+            
+
+			
+            var address = '<div><p><b>markerlocations[i][2]</b></p></div>';
+            var infowindow = new google.maps.InfoWindow({
+              content: address
+            });
+            console.log(markerlocations[i][0]);
+			var name = markerlocations[i][0];
+			var name1 = markerlocations[i][1];
+			var dname = markerlocations[i][2]
+			var data = {name:markerlocations[i][0],name1:markerlocations[i][1],dname:markerlocations[i][2]};
+			console.log(data);
+            
+           google.maps.event.addListener(marker, "click", function (event) {
+            
+           var latitude = this.position.lat();
+            var longitude = this.position.lng();
+            var drivername = this.getTitle();
+            
+            alert(this.position,);
+            
+							var data = {latitude:latitude,longitude:longitude,drivername:drivername};
+							$.ajax({
+					            type: "POST",
+					            url: "bookingofdriver",
+					            data: data,
+					            success: function (data) {
+					            	console.log(data);
+					            	
+        					        window.location.replace("/main2");
+					            },
+					            error: function (e) {
+					                console.log("ERROR : ", e);
+					            }
+					        });
+            });
+            
+        }
+    }
+    </script>
+    
+     <script>
+         function gfgMenu() {
+             const GFG = document.querySelector('.links');
+   
+             if (GFG.style.display === "none") {
+                 GFG.style.display = "block";
+             }
+             else {
+                 GFG.style.display = "none";
+             }
+         }
+     </script>
+    
+    
+      
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwaXa3JZsFqv71812tm1k5FokRzLrX0RM&callback=initialize_map"></script>
+  </body>
+</html>

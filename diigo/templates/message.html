@@ -1,0 +1,191 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>EtherRider</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}">
+      <!-- fevicon -->
+      <link rel="icon" href="{{url_for('static',filename='images/fevicon.png')}}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/jquery.mCustomScrollbar.min.css')}}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      
+      <style>
+      *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+      </style>
+
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div>
+   <h1 style="color:blue;font-size: 60px;">EtherRider</h1>
+   </div>
+      <div class="loader_bg">
+         <div class="loader"><img src="{{url_for('static',filename='images/loading.gif')}}" alt="#" /></div>
+      </div>
+      
+      <!-- end loader -->
+      <!-- header -->
+    
+   
+            
+
+      <footer>
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12 ">
+                     <div class="cont">
+                       
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                  
+                      <div class="col-md-6">
+                         <div class="text-img">
+                            <figure><img src="{{url_for('static',filename='images/car.png')}}" alt="#"/></figure>
+                         </div>
+                      </div>
+                     <ul class="social_icon">
+                        
+                        <h1>Payment Successfull</h1>
+                        
+                        
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            
+            
+            
+       <section>
+            
+            
+            <form action="/rating" id="signupform" method="post">
+          
+            <center><h1 style="color:#F90440;">Rate Your Experience</h1></center>
+            
+            <hr>
+            <div class="rate">
+
+            <input type="radio" id="star5" name="rate1" value="1" />
+            <label for="star5" title="text">5 stars</label>
+            <input type="radio" id="star4" name="rate2" value="1" />
+            <label for="star4" title="text">4 stars</label>
+            <input type="radio" id="star3" name="rate3" value="1" />
+            <label for="star3" title="text">3 stars</label>
+            <input type="radio" id="star2" name="rate4" value="1" />
+            <label for="star2" title="text">2 stars</label>
+            <input type="radio" id="star1" name="rate5" value="1" />
+            <label for="star1" title="text">1 star</label>
+            </div>
+           
+           <button class="button button4" style="font-size:30px" type="submit" id="btnRegister" class="btn btn-style btn-primary mt-4">Submit</button>
+    
+          
+        </form>
+       
+        </section>
+        
+         </br>
+         </br>
+         
+         </br>
+         
+         </br>
+        
+        
+        
+        
+            
+            
+            <div class="copyright">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <p>Built By <a href="https://html.design/">C.A.R</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      
+      
+     
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/jquery-3.0.0.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/plugin.js')}}js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="{{url_for('static',filename='js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/custom.js')}}"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   </body>
+</html>
+

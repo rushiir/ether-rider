@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+            	       <script src="{{url_for('static',filename='new/js/jquery-3.3.1.js')}}"></script>
+  </head>
+  <body>
+  <div>
+<h1 style="color:blue;font-size: 60px;">EtherRider</h1>
+</div>
+
+<center><h3 style="color:blue;font-size: 60px;">Select Ride</h3></center>
+    <div id="map_container" style="width: 1400px; height: 800px;"> </div>
+    
+    <script>
+    function initialize_map() {
+    {% autoescape off %} 
+     console.log('data',{{data}});
+     console.log('data2',{{data2}});
+     
+   
+     
+        var mapDiv = document.getElementById('map_container');
+        var map = new google.maps.Map(mapDiv, {
+            center: {lat: 28.7041, lng: 77.1025},
+            zoom: 5
+                
+
+        });
+       
+        var markerlocations ={{data}};
+        for(i  = 0;  i < markerlocations.length; i++) {
+            var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(markerlocations[i][0], markerlocations[i][1]),
+                    map: map,
+                    title: markerlocations[i][2],
+                    icon:  'static/icons/cloudysunny.png'  
+               {% endautoescape %}        
+            });
+            
+
+			
+            var address = '<div><p><b>markerlocations[i][2]</b></p></div>';
+            var infowindow = new google.maps.InfoWindow({
+              content: address
+            });
+            console.log(markerlocations[i][0]);
+			var name = markerlocations[i][0];
+			var name1 = markerlocations[i][1];
+			var rname = markerlocations[i][2]
+			var data = {name:markerlocations[i][0],name1:markerlocations[i][1],rname:markerlocations[i][2]};
+			console.log(data);
+            
+           google.maps.event.addListener(marker, "click", function (event) {
+            
+           var latitude = this.position.lat();
+            var longitude = this.position.lng();
+            var ridername = this.getTitle();
+            
+            alert(this.position);
+            
+							var data = {latitude:latitude,longitude:longitude,ridername:ridername};
+							$.ajax({
+					            type: "POST",
+					            url: "bookingofrider",
+					            data: data,
+					            success: function (data) {
+					            	console.log(data);
+					            	
+        					        window.location.replace("/showroute");
+					            },
+					            error: function (e) {
+					                console.log("ERROR : ", e);
+					            }
+					        });
+            });
+            
+        }
+    }
+    </script>
+    
+    
+      
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwaXa3JZsFqv71812tm1k5FokRzLrX0RM&callback=initialize_map"></script>
+  </body>
+</html>

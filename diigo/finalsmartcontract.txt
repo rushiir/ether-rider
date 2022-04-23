@@ -1,0 +1,211 @@
+pragma experimental ABIEncoderV2;
+
+contract Fakeproduct {
+   
+    struct driverinfo {
+        address key;
+        string username;
+        string fullusername;
+        string usermobile;
+        string typeofuservehicle;
+        string availableuserseat;
+        string password;
+        string typeofuser;
+    
+    }
+
+    struct normaluser {
+        address key;
+        string username;
+        string fullusername;
+        string usermobile;
+        string password;
+    
+    }
+
+    struct locationinfo {
+        address key;
+        string lname;       
+    
+    }
+
+
+    struct paymentinfo {
+        address key;
+        string pay;  
+        string rname;     
+    
+    }
+
+
+     struct makeapayment {
+        address key;
+        string ridername;  
+        string fare;     
+    
+    }
+
+    mapping (string => address) userAddresses;
+    mapping (address => driverinfo) driverinfos;
+    mapping (address => locationinfo) locationinfos;
+    mapping (address => normaluser) normalusers;
+    mapping (address => paymentinfo) paymentinfos;
+    mapping (address => makeapayment) makeapayments;
+  
+    
+    driverinfo[] public alldriverinfo;
+    locationinfo[] public alllocationinfo;
+    paymentinfo[] public allpaymentinfo;
+    normaluser[] public allnormaluser;
+    makeapayment[] public allmakeapayment;
+   
+    event getRecord(string data);
+    
+
+    function driverRegister(string memory user,  string memory username, string memory fullusername, string memory usermobile, 
+    string memory typeofuservehicle,string memory availableuserseat,string memory password,string memory typeofuser) public {
+       
+            address pAddr = userAddresses[user];
+            driverinfo memory driverinfo1 = driverinfo(msg.sender,username, fullusername, usermobile, typeofuservehicle, availableuserseat, password, typeofuser);  
+            
+            //caseinfos[pAddr].case_id=case_id;//.push(name);
+           
+            driverinfos[pAddr].username=username;
+            driverinfos[pAddr].fullusername=fullusername;
+            driverinfos[pAddr].usermobile=usermobile;
+            driverinfos[pAddr].typeofuservehicle=typeofuservehicle;
+            driverinfos[pAddr].availableuserseat=availableuserseat;
+            driverinfos[pAddr].password=password;
+            driverinfos[pAddr].typeofuser=typeofuser;
+            alldriverinfo.push(driverinfo1);
+       
+    }
+
+    function driverLogin(string memory user,string memory username,string memory password,string memory typeofuser) public returns(driverinfo[] memory) 
+    {
+        address pAddr = userAddresses[user];
+        driverinfo[] memory result = new driverinfo[](alldriverinfo.length);  // step 2 - create the fixed-length array
+        uint256 j;       
+        
+            for (uint i = 0; i < alldriverinfo.length; i++)
+            {
+                if(keccak256(abi.encodePacked(string(alldriverinfo[i].username)))==keccak256(abi.encodePacked(username)) && keccak256(abi.encodePacked(string(alldriverinfo[i].password)))==keccak256(abi.encodePacked(password)) && keccak256(abi.encodePacked(string(alldriverinfo[i].typeofuser)))==keccak256(abi.encodePacked(typeofuser)))
+                {
+                    emit getRecord(alldriverinfo[i].username);
+                    result[j]=alldriverinfo[i];
+                    j++;
+                }
+            }
+            return result;  
+    }
+
+    function location(string memory user,  string memory lname) public {
+       
+            address pAddr = userAddresses[user];
+            locationinfo memory locationinfo1 = locationinfo(msg.sender,lname);  
+            
+            //caseinfos[pAddr].case_id=case_id;//.push(name);
+           
+            locationinfos[pAddr].lname=lname;
+            
+            alllocationinfo.push(locationinfo1);
+       
+    }
+
+    function getlocation(string memory user) public returns(locationinfo[] memory) 
+    {
+        address pAddr = userAddresses[user];
+        locationinfo[] memory result = new locationinfo[](alllocationinfo.length);  // step 2 - create the fixed-length array
+        uint256 j;       
+        
+            for (uint i = 0; i < alllocationinfo.length; i++)
+            {
+                 emit getRecord(alllocationinfo[i].lname);
+                    result[j]=alllocationinfo[i];
+                    j++;
+            }
+            return result;  
+    }
+
+    function allnormalreg(string memory user,  string memory username, string memory fullusername, string memory usermobile, string memory password) public {
+       
+        address pAddr = userAddresses[user];
+        normaluser memory normaluser1 = normaluser(msg.sender,username, fullusername, usermobile, password);  
+        
+        //caseinfos[pAddr].case_id=case_id;//.push(name);
+        
+        normalusers[pAddr].username=username;
+        normalusers[pAddr].fullusername=fullusername;
+        normalusers[pAddr].usermobile=usermobile;
+        normalusers[pAddr].password=password;
+        allnormaluser.push(normaluser1);
+       
+    }
+
+    function allnormallog(string memory user,string memory username,string memory password) public returns(normaluser[] memory) 
+    {
+        address pAddr = userAddresses[user];
+        normaluser[] memory result = new normaluser[](allnormaluser.length);  // step 2 - create the fixed-length array
+        uint256 j;       
+        
+            for (uint i = 0; i < allnormaluser.length; i++)
+            {
+                if(keccak256(abi.encodePacked(string(allnormaluser[i].username)))==keccak256(abi.encodePacked(username)) && keccak256(abi.encodePacked(string(allnormaluser[i].password)))==keccak256(abi.encodePacked(password)))
+                {
+                    emit getRecord(allnormaluser[i].username);
+                    result[j]=allnormaluser[i];
+                    j++;
+                }
+            }
+            return result;  
+    }
+
+    function payment(string memory user,  string memory pay,  string memory rname) public {
+       
+            address pAddr = userAddresses[user];
+            paymentinfo memory paymentinfo1 = paymentinfo(msg.sender,pay,rname);  
+            
+            //caseinfos[pAddr].case_id=case_id;//.push(name);
+           
+            paymentinfos[pAddr].pay=pay;
+            paymentinfos[pAddr].rname=rname;
+            
+            allpaymentinfo.push(paymentinfo1);
+       
+    }
+
+    function getpayment(string memory user,string memory rname) public returns(paymentinfo[] memory) 
+    {
+        address pAddr = userAddresses[user];
+        paymentinfo[] memory result = new paymentinfo[](allpaymentinfo.length);  // step 2 - create the fixed-length array
+        uint256 j;       
+        
+            for (uint i = 0; i < allpaymentinfo.length; i++)
+            {
+                if(keccak256(abi.encodePacked(string(allpaymentinfo[i].rname)))==keccak256(abi.encodePacked(rname)))
+                {
+                    emit getRecord(allpaymentinfo[i].rname);
+                    result[j]=allpaymentinfo[i];
+                    j++;
+                }
+            }
+            return result;  
+    }
+
+    function makepay(string memory user,  string memory ridername,  string memory fare) public {
+       
+            address pAddr = userAddresses[user];
+            makeapayment memory makeapayment1 = makeapayment(msg.sender,ridername,fare);  
+            
+            //caseinfos[pAddr].case_id=case_id;//.push(name);
+           
+            makeapayments[pAddr].ridername=ridername;
+            makeapayments[pAddr].fare=fare;
+            
+            allmakeapayment.push(makeapayment1);
+       
+    }
+
+}
+
+   

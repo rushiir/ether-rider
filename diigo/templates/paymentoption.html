@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>EtherRider</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}">
+      <!-- fevicon -->
+      <link rel="icon" href="{{url_for('static',filename='images/fevicon.png')}}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{{url_for('static',filename='css/jquery.mCustomScrollbar.min.css')}}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <script src="{{url_for('static',filename='new/js/jquery-3.3.1.js')}}"></script>
+  <script src="{{url_for('static',filename='new/blockchain.js')}}"></script>    
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<style>
+        .container {
+            max-width: 1500px;
+            height: 60px;
+            background: #5555;
+            margin: auto;
+            border: 2px solid blue;
+        }
+  
+        .navbar {
+            background: blue;
+            position: relative;
+            color: White;
+            max-width: 1500px;
+        }
+  
+        .links {
+            display: none;
+        }
+  
+        .heading a:nth-child(2) {
+            color: White;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 7px;
+            margin-left: 150px;
+        }
+  
+        .heading a i {
+            color: white;
+            padding: 10px;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+  
+        .heading a i:hover {
+            background-color: white;
+            color: white;
+        }
+  
+        .links {
+            background-color: rgb(190, 196, 190);
+        }
+  
+        .links a {
+            color: white;
+            padding: 5px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            display: block;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+  
+        .links a:hover {
+            background-color: white;
+            color: white;
+        }
+    </style>
+    
+    
+    <style>
+.dropbtn {
+  background-color: blue;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+  
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #0000cc;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #0000cc;}
+</style>
+
+
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}
+</style>
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div>
+ <h1 style="color:blue;font-size: 60px;">EtherRider</h1>
+   </div>
+      <div class="loader_bg">
+         <div class="loader"><img src="{{url_for('static',filename='images/loading.gif')}}" alt="#" /></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <div class="container">
+                <div class="navbar">
+                    <div class="heading">
+                        <a href="#hamburger-icon" onclick="gfgMenu()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <div class="dropdown">
+                        
+                        <ul>
+          <li><a href="/findride" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Find Ride</a></li>
+          <li><a href="/paymentoption" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Payment</a></li>
+          <li><a href="/status" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Yore Ride Status</a></li>
+          <li><a href="/History" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">History</a></li>
+          <li><a href="/Logout" style="margin-right: 0px;margin-left: 100px;font-size: 20px;">Logout</a></li>
+        </ul>
+        </div>  
+                        
+                    </div>
+                    <div class="links">
+                        <a href="/profile"> Profile </a>
+                        <a href="/History"> History </a>
+                        <a href="/Logout"> Logout </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+<div class="col-md-12">
+
+    <div class="col-md-6">
+       <div class="text-img">
+          <figure><img src="{{url_for('static',filename='images/car.png')}}" alt="#"/></figure>
+       </div>
+    </div>
+   
+</div>
+      
+     
+   <section class="w3l-covers-18">
+          <div class="container1">
+             <div class="row">
+                <div class="col-md-12 ">
+                <center><h1>
+                Make a Payment
+                </h1></center>
+                   <form action="/add" method="POST" id="fileUploadForm" class="contact-form" enctype="multipart/form-data">
+                   <label style="font-size:30px" for="email"><b>Rider Name :</b></label>
+                  <input   style="font-size:30px" id="ridername" name="ridername" placeholder="Username" value="{{a}}" required readonly>
+                  <label style="font-size:30px" for="email"><b>Fare :</b></label>
+                  <input   style="font-size:30px" id="fare" name="fare" placeholder="Username" value="{{b}}" required readonly>
+                 
+                   
+                   
+                 <div class="form-submit text-right">
+                     <button type="submit" id="btnSubmit" class="btn btn-style btn-primary">make a payment</button>
+                 </div>
+                 
+               </form>
+                </div>
+             </div>
+          </div>
+  </section>
+            
+
+     
+      
+      
+     
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/jquery-3.0.0.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/plugin.js')}}js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="{{url_for('static',filename='js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/custom.js')}}"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+      $(document).ready(function () {
+
+          $("#btnSubmit").click(function (event) {
+              event.preventDefault();
+              var form = $('#fileUploadForm')[0];
+              var data = new FormData(form);        
+              $("#btnSubmit").prop("disabled", true);
+              $.ajax({
+                  type: "POST",
+                  enctype: 'multipart/form-data',
+                  url: "makeapayment",
+                  data: data,
+                  processData: false,
+                  contentType: false,
+                  cache: false,
+                  timeout: 600000,
+                  success: function (data) {
+                  	console.log(data);
+                  	 
+      				var riname = data['a'];
+      				var fareamount = data['b'];
+      				
+                      
+                      web3=new Web3(web3.currentProvider);
+      				var accountisobtained="";//accountis;
+      				web3.eth.getAccounts((err, res) => { 
+      					accountisobtained=res[0];
+      					$('#acd').html(accountisobtained);
+      					var web3dictdata = {
+      							gasPrice: web3.utils.stringToHex(gasPriceval),
+      							gas: web3.utils.stringToHex(gasval),
+      							to: address,
+      							from:accountisobtained,		
+      						}
+      					$("#btnSubmit").prop("disabled", false);
+      					window.location.replace("/message");
+      					return contract.methods.makepay(accountisobtained,riname, fareamount).send(web3dictdata); 
+      					});
+      					
+      					 
+      				return false;
+                      
+                      $("#btnSubmit").prop("disabled", false);
+                  },
+                  error: function (e) {
+                      console.log("ERROR : ", e);
+                      $("#btnSubmit").prop("disabled", false);
+                  }
+              });
+          });
+      });
+      </script>
+      
+       <script>
+           function gfgMenu() {
+               const GFG = document.querySelector('.links');
+     
+               if (GFG.style.display === "none") {
+                   GFG.style.display = "block";
+               }
+               else {
+                   GFG.style.display = "none";
+               }
+           }
+       </script>
+   </body>
+</html>
+
